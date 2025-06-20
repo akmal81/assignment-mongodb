@@ -1,7 +1,8 @@
-import { model, Schema } from "mongoose";
-import { IBook } from "../interface/book.interface";
+import { Model, model, Schema } from "mongoose";
 
-const bookSchema = new Schema<IBook>({
+import { BookInstanceMethods, IBook } from "../interface/book.interface";
+
+const bookSchema = new Schema<IBook, Model<IBook>, BookInstanceMethods>({
     title: {
         type: String,
         required: [true, 'Title should be provided'],
@@ -36,19 +37,29 @@ const bookSchema = new Schema<IBook>({
     copies: {
         type: Number,
         required: true,
-        min: [1, "Copies must be a positive number"]
+        min: [0, "Copies must be a positive number"]
     },
     available: {
         type: Boolean,
         default: true
     }
-
 },
-{
-    versionKey:false,
-    timestamps:true
-}
+    {
+        versionKey: false,
+        timestamps: true
+    }
 
 )
+
+bookSchema.method("adjustCopies", async function (quantity: number) {
+
+    this.copies -= quantity;
+    if (this.copies <= 0) {
+        this.available = false;
+        this.copies = 0
+    }
+    return await this.save()
+
+})
 
 export const Book = model("Book", bookSchema)

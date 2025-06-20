@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { Book } from "../models/book.model";
-import mongoose from "mongoose";
 
 export const bookRouters = express.Router()
 
@@ -24,7 +23,7 @@ bookRouters.post('/', async (req: Request, res: Response) => {
     }
 })
 
-//2
+//2 incomplelet
 bookRouters.get('/', async (req: Request, res: Response) => {
     const body = req.body;
     const books = await Book.find(body);
@@ -51,7 +50,8 @@ bookRouters.get('/:bookId', async (req: Request, res: Response) => {
 })
 
 //4
-bookRouters.patch('/:bookId', async (req: Request, res: Response) => {
+bookRouters.put('/:bookId', async (req: Request, res: Response) => {
+    
     const bookId = req.params.bookId;
     const updateBookData = req.body;
     const book = await Book.findByIdAndUpdate(bookId, updateBookData, {new:true});
@@ -60,7 +60,6 @@ bookRouters.patch('/:bookId', async (req: Request, res: Response) => {
         success: true,
         message: "Book updated successfully",
         data: book
-
     })
 })
 
