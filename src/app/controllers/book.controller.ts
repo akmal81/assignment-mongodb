@@ -87,7 +87,8 @@ bookRouters.put('/:bookId', async (req: Request, res: Response) => {
 //5
 bookRouters.delete('/:bookId', async (req: Request, res: Response) => {
     const bookId = req.params.bookId;
-    await Book.findByIdAndDelete(bookId);
+    // await Book.findByIdAndDelete(bookId);
+    await Book.findOneAndDelete({_id:bookId});
 
     res.status(200).json({
         success: true,

@@ -1,6 +1,7 @@
 import { Model, model, Schema } from "mongoose";
 
 import { BookInstanceMethods, IBook } from "../interface/book.interface";
+import { Borrow } from "./borrow.model";
 
 const bookSchema = new Schema<IBook, Model<IBook>, BookInstanceMethods>({
     title: {
@@ -60,6 +61,13 @@ bookSchema.method("adjustCopies", async function (quantity: number) {
     }
     return await this.save()
 
+})
+
+bookSchema.post("findOneAndDelete", async function (doc, next) {
+    if(doc){
+        await Borrow.deleteMany({book:doc.id})
+    }
+    next()
 })
 
 export const Book = model("Book", bookSchema)
