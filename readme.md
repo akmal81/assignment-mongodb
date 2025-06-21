@@ -316,3 +316,15 @@ borrowRouters.get('/', async (req: Request, res: Response) => {
 }
 ```
 
+# Install dependencies
+npm install
+
+# Run in development
+npm run dev
+
+# Build for production
+npm run build
+
+
+🙌 Author
+Akmal Hossain — Full-stack Developer, MongoDB Enthusiast from Khulna, Bangladesh
