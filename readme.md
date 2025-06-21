@@ -1,3 +1,206 @@
+# 📚 Assignment - 3: Library Management API
+
+A RESTful API for managing books and borrowing system using **Express.js**, **TypeScript**, and **MongoDB**.
+
+---
+
+## 🚀 Features
+
+- 📘 CRUD operations for books
+- 🔒 Unique ISBN enforcement
+- 📥 Borrow books with quantity tracking
+- 🔁 Automatically updates availability and copies
+- 📊 Borrowed books summary via aggregation
+
+---
+
+## 🛠 Technology Stack
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- TypeScript
+- MVC Pattern
+
+---
+
+## 📚 API Endpoints
+
+### 🔹 GET `/api/books`
+
+Get all books with optional query parameters:
+
+#### ✅ Filtering, Sorting & Limit:
+GET /api/books?filter=FANTASY&sortBy=createdAt&sort=asc&limit=10
+
+
+- `filter`: Filter by genre (e.g., FANTASY, SCIENCE)
+- `sortBy`: Field to sort by (e.g., title, createdAt)
+- `sort`: `asc` or `desc`
+- `limit`: Number of items to return (default: 10)
+
+---
+
+### 🔹 GET `/api/books/:bookId`
+
+Retrieve a book by its ID.
+
+#### 🧾 Sample Response:
+
+```json
+{
+  "success": true,
+  "message": "Books retrieved successfully",
+  "data": {
+    "_id": "64f123abc4567890def12345",
+    "title": "The Theory of Everything",
+    "author": "Stephen Hawking",
+    "genre": "SCIENCE",
+    "isbn": "9780553380163",
+    "description": "An overview of cosmology and black holes.",
+    "copies": 5,
+    "available": true,
+    "createdAt": "...",
+    "updatedAt": "..."
+  }
+}
+
+
+🔹 POST /api/books
+Create a new book.
+
+📥 Sample Request:
+{
+  "title": "The Theory of Everything",
+  "author": "Stephen Hawking",
+  "genre": "SCIENCE",
+  "isbn": "9780553380163",
+  "description": "An overview of cosmology and black holes.",
+  "copies": 5
+}
+
+📤 Response:
+json
+Copy
+Edit
+{
+  "success": true,
+  "message": "Book created successfully",
+  "data": { ... }
+}
+🔹 PUT /api/books/:bookId
+Update a book's info (e.g., copies).
+
+🧾 Sample Request:
+json
+Copy
+Edit
+{
+  "copies": 50
+}
+✅ Response:
+json
+Copy
+Edit
+{
+  "success": true,
+  "message": "Book updated successfully",
+  "data": { ... }
+}
+🔹 DELETE /api/books/:bookId
+Delete a book by ID.
+
+✅ Response:
+json
+Copy
+Edit
+{
+  "success": true,
+  "message": "Book deleted successfully",
+  "data": null
+}
+🔹 POST /api/borrow
+Borrow a book:
+
+Checks if enough copies are available
+
+Decreases stock
+
+Marks book as unavailable if stock hits zero
+
+📥 Request:
+json
+Copy
+Edit
+{
+  "book": "64ab3f9e2a4b5c6d7e8f9012",
+  "quantity": 2,
+  "dueDate": "2025-07-18T00:00:00.000Z"
+}
+✅ Response:
+json
+Copy
+Edit
+{
+  "success": true,
+  "message": "Book borrowed successfully",
+  "data": { ... }
+}
+🔹 GET /api/borrow
+Borrowed Books Summary
+
+Uses MongoDB Aggregation Pipeline
+
+Groups by book and sums total borrowed quantity
+
+✅ Response:
+json
+Copy
+Edit
+{
+  "success": true,
+  "message": "Borrowed books summary retrieved successfully",
+  "data": [
+    {
+      "book": {
+        "title": "The Theory of Everything",
+        "isbn": "9780553380163"
+      },
+      "totalQuantity": 5
+    },
+    {
+      "book": {
+        "title": "1984",
+        "isbn": "9780451524935"
+      },
+      "totalQuantity": 3
+    }
+  ]
+}
+⚙️ Getting Started
+bash
+Copy
+Edit
+# Install dependencies
+npm install
+
+# Run in development
+npm run dev
+
+# Build for production
+npm run build
+🙋 Author
+Akmal Hossain
+📍 Khulna, Bangladesh
+🧠 Full-stack Developer & MongoDB Enthusiast
+
+
+
+
+
+
+-----------------------------------------------------
 ###### Assignment -3
 ### Library Management API with Express, TypeScript & MongoDB
 
