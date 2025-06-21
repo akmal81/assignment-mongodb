@@ -55,6 +55,8 @@ bookRouters.get('/', async (req: Request, res: Response) => {
 
     else {
         books = await Book.find()
+            .sort({ [sortField]: sortOrder })
+            .limit(limit);
 
     }
 
