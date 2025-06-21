@@ -6,27 +6,27 @@ import { Borrow } from "./borrow.model";
 const bookSchema = new Schema<IBook, Model<IBook>, BookInstanceMethods>({
     title: {
         type: String,
-        required: [true, 'Title should be provided'],
+        required: [true, 'Title must be provided'],
         trim: true
     },
     author: {
         type: String,
-        required: [true, 'Author name should be provided'],
+        required: [true, 'Author must be be provided'],
         trim: true
     },
     genre: {
         type: String,
-        required: [true, 'Genre should be provided'],
+        required: [true, 'Must be one of: FICTION, NON_FICTION, SCIENCE, HISTORY, BIOGRAPHY, FANTASY.'],
         uppercase: true,
         enum: {
             values: ['FICTION', 'NON_FICTION', 'SCIENCE', 'HISTORY', 'BIOGRAPHY', 'FANTASY'],
-            message: "genre is not valid, got {value}"
+            message: "Must be one of: FICTION, NON_FICTION, SCIENCE, HISTORY, BIOGRAPHY, FANTASY."
         }
     },
     isbn: {
         type: String,
         unique: [true, 'isbn-no must be unique'], //
-        required: [true, 'isbn should be provided'],
+        required: [true, 'isbn must be provided'],
         trim: true
     },
     description: {

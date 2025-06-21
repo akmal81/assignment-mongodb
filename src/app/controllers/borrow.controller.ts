@@ -24,7 +24,6 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
         })
 
     }
-
 })
 
 borrowRouters.get('/', async (req: Request, res: Response) => {
