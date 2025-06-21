@@ -31,7 +31,7 @@
 
 ##### Response
 
-`
+```
 {
   "success": true,
   "message": "Books retrieved successfully",
@@ -51,12 +51,12 @@
     {...}
   ]
 }
-`
+```
 
 #### POST `/api/books`
 - Create A new Book
 
-`
+```
 borrowRouters.post('/', async (req: Request, res: Response) => {
 
     try {
@@ -75,9 +75,9 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
     }
 })
 
-`
+```
 ##### Request
-`
+```
 {
   "title": "The Theory of Everything",
   "author": "Stephen Hawking",
@@ -87,11 +87,11 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
   "copies": 5,
   "available": true
 }
-`
+```
 
 ##### Response
 
-`
+```
 {
   "success": true,
   "message": "Book created successfully",
@@ -108,12 +108,12 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
     "updatedAt": "2024-11-19T10:23:45.123Z"
   }
 }
-`
+```
 
 #### PUT `/api/books/:bookId`
 ##### Update Book api
 
-`
+```
 bookRouters.put('/:bookId', async (req: Request, res: Response) => {
 
     const bookId = req.params.bookId;
@@ -126,16 +126,16 @@ bookRouters.put('/:bookId', async (req: Request, res: Response) => {
         data: book
     })
 })
-`
+```
 
 ##### Request
-`
+```
 {
   "copies": 50
 }
-`
+```
 ##### Response
-`
+```
 {
   "success": true,
   "message": "Book updated successfully",
@@ -152,13 +152,13 @@ bookRouters.put('/:bookId', async (req: Request, res: Response) => {
     "updatedAt": "2024-11-20T08:30:00.000Z"
   }
 }
-`
+```
 
 #### DELETE `/api/books/:bookId`
 
 ##### Delete Book api
 
-`
+```
 bookRouters.delete('/:bookId', async (req: Request, res: Response) => {
     const bookId = req.params.bookId;
     // await Book.findByIdAndDelete(bookId);
@@ -172,15 +172,15 @@ bookRouters.delete('/:bookId', async (req: Request, res: Response) => {
 })
 
 
-`
+```
 ##### Response
-`
+```
 {
   "success": true,
   "message": "Book deleted successfully",
   "data": null
 }
-`
+```
 
 #### Borrow Book 
 
@@ -191,7 +191,7 @@ bookRouters.delete('/:bookId', async (req: Request, res: Response) => {
 - If copies become 0, update available to false.
 
 
-`
+```
 borrowRouters.post('/', async (req: Request, res: Response) => {
 
     try {
@@ -210,19 +210,19 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
 
     }
 })
-`
+```
 
 ##### Response
-`
+```
 {
   "book": "64ab3f9e2a4b5c6d7e8f9012",
   "quantity": 2,
   "dueDate": "2025-07-18T00:00:00.000Z"
 }
-`
+```
 ##### Response
 
-`
+```
 {
   "success": true,
   "message": "Book borrowed successfully",
@@ -235,7 +235,7 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
     "updatedAt": "2025-06-18T07:12:15.123Z"
   }
 }
-`
+```
 #### Borrowed Books Summary 
 
 #### GET `/api/borrow`
@@ -245,7 +245,7 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
 - sum total quantity borrowed per book
 - Return book info and total borrowed quantity
 
-`
+```
 borrowRouters.get('/', async (req: Request, res: Response) => {
     try {
         const summary = await Borrow.aggregate([
@@ -290,10 +290,10 @@ borrowRouters.get('/', async (req: Request, res: Response) => {
         });
     }
 });
-`
+```
 
 ##### Response
-`
+```
 {
   "success": true,
   "message": "Borrowed books summary retrieved successfully",
@@ -314,5 +314,5 @@ borrowRouters.get('/', async (req: Request, res: Response) => {
     }
   ]
 }
-`
+```
 
