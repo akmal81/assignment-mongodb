@@ -1,8 +1,11 @@
 import express, { Request, Response } from "express";
 import { Borrow } from "../models/borrow.model";
 import { Book } from "../models/book.model";
+import { z } from "zod";
 
 export const borrowRouters = express.Router()
+
+
 
 borrowRouters.post('/', async (req: Request, res: Response) => {
 
@@ -15,7 +18,6 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
             data: borrow
         })
     } catch (error) {
-        console.log(error)
         res.status(400).json({
             success: false,
             message:(error as Error).message

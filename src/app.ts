@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from "express";
-import { bookRouters } from "./controllers/book.controller";
-import { borrowRouters } from "./controllers/borrow.controller";
+import { bookRouters } from "./app/controllers/book.controller";
+import { borrowRouters } from "./app/controllers/borrow.controller";
 
 
 const app:Application = express()
